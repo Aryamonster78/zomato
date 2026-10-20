@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zomato Template</title>
+<style>
+  :root {
+    --red: #e23744;
+    --dark: #1c1c1c;
+    --grey: #696969;
+    --light: #f8f8f8;
+    --border: #e8e8e8;
+    --green: #267e3e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: var(--dark); background: #fff; }
+  a { text-decoration: none; color: inherit; }
+
+  /* Navbar */
+  .navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 6%; border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; background: #fff; z-index: 10;
+  }
+  .logo { font-size: 28px; font-weight: 800; font-style: italic; color: var(--red); }
+  .nav-links { display: flex; gap: 24px; font-size: 15px; color: var(--grey); }
+  .nav-links a:hover { color: var(--dark); }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Crect width='10' height='10' fill='%23444'/%3E%3C/svg%3E");
+    background-color: #333;
+    color: #fff; text-align: center; padding: 80px 6% 90px;
+  }
+  .hero h1 { font-size: clamp(28px, 5vw, 46px); margin-bottom: 10px; }
+  .hero p { font-size: 18px; margin-bottom: 28px; opacity: .9; }
+  .search {
+    display: flex; max-width: 700px; margin: auto; background: #fff;
+    border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  }
+  .search input { border: 0; padding: 16px; font-size: 16px; outline: none; }
+  .search input:first-child { width: 35%; border-right: 1px solid var(--border); }
+  .search input:last-child { flex: 1; }
+
+  /* Categories */
+  .section { padding: 40px 6%; }
+  .section h2 { font-size: 26px; margin-bottom: 20px; }
+  .categories { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 8px; }
+  .cat { min-width: 110px; text-align: center; }
+  .cat .circle {
+    width: 100px; height: 100px; border-radius: 50%; background: var(--light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 44px; margin: 0 auto 8px; border: 1px solid var(--border);
+  }
+  .cat:hover .circle { border-color: var(--red); }
+
+  /* Filters */
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .filters button {
+    padding: 8px 16px; border: 1px solid var(--border); background: #fff;
+    border-radius: 8px; font-size: 14px; cursor: pointer; color: var(--grey);
+  }
+  .filters button:hover, .filters .active { border-color: var(--red); color: var(--red); background: #fff5f6; }
+
+  /* Restaurant cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+  .card { border-radius: 14px; overflow: hidden; transition: box-shadow .2s; }
+  .card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+  .card .img {
+    height: 180px; display: flex; align-items: center; justify-content: center;
+    font-size: 70px; position: relative; border-radius: 14px;
+  }
+  .offer {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 12px 8px;
+    background: linear-gradient(transparent, rgba(0,0,0,.75));
+    color: #fff; font-size: 15px; font-weight: 700;
+  }
+  .card .info { padding: 12px 4px; }
+  .row { display: flex; justify-content: space-between; align-items: center; }
+  .row h3 { font-size: 18px; }
+  .rating { background: var(--green); color: #fff; font-size: 13px; font-weight: 700; padding: 3px 8px; border-radius: 6px; }
+  .meta { color: var(--grey); font-size: 14px; margin-top: 4px; }
+
+  /* Footer */
+  footer { background: var(--light); padding: 30px 6%; text-align: center; color: var(--grey); font-size: 14px; margin-top: 30px; }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .search { flex-direction: column; }
+    .search input:first-child { width: 100%; border-right: 0; border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <a href="#" class="logo">zomato</a>
+  <nav class="nav-links">
+    <a href="#">Add restaurant</a>
+    <a href="#">Log in</a>
+    <a href="#">Sign up</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Discover the best food &amp; drinks</h1>
+  <p>Order food, find restaurants and book tables near you</p>
+  <div class="search">
+    <input type="text" placeholder="📍 Ajmer">
+    <input type="text" placeholder="🔍 Search for restaurant, cuisine or a dish">
+  </div>
+</section>
+
+<section class="section">
+  <h2>What's on your mind?</h2>
+  <div class="categories">
+    <a href="#" class="cat"><div class="circle">🍕</div>Pizza</a>
+    <a href="#" class="cat"><div class="circle">🍔</div>Burger</a>
+    <a href="#" class="cat"><div class="circle">🍛</div>Biryani</a>
+    <a href="#" class="cat"><div class="circle">🥟</div>Momos</a>
+    <a href="#" class="cat"><div class="circle">🍰</div>Cakes</a>
+    <a href="#" class="cat"><div class="circle">🥗</div>Healthy</a>
+    <a href="#" class="cat"><div class="circle">🍜</div>Noodles</a>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Top restaurants near you</h2>
+  <div class="filters">
+    <button class="active">Rating 4.0+</button>
+    <button>Pure Veg</button>
+    <button>Fast Delivery</button>
+    <button>Offers</button>
+    <button>Under ₹300</button>
+  </div>
+
+  <div class="grid">
+    <a href="#" class="card">
+      <div class="img" style="background:#ffe3d6">🍕<div class="offer">50% OFF up to ₹100</div></div>
+      <div class="info">
+        <div class="row"><h3>Pizza Corner</h3><span class="rating">4.3 ★</span></div>
+        <p class="meta">Pizza, Italian · ₹300 for two</p>
+        <p class="meta">25–30 min · 2.1 km</p>
+      </div>
+    </a>
+    <a href="#" class="card">
+      <div class="img" style="background:#fff1c9">🍛<div class="offer">Free delivery</div></div>
+      <div class="info">
+        <div class="row"><h3>Royal Biryani House</h3><span class="rating">4.5 ★</span></div>
+        <p class="meta">Biryani, Mughlai · ₹400 for two</p>
+        <p class="meta">30–35 min · 3.4 km</p>
+      </div>
+    </a>
+    <a href="#" class="card">
+      <div class="img" style="background:#dff3e4">🥗<div class="offer">20% OFF</div></div>
+      <div class="info">
+        <div class="row"><h3>Green Bowl</h3><span class="rating">4.1 ★</span></div>
+        <p class="meta">Healthy, Salads · ₹250 for two</p>
+        <p class="meta">20–25 min · 1.5 km</p>
+      </div>
+    </a>
+    <a href="#" class="card">
+      <div class="img" style="background:#e2e9ff">🍔<div class="offer">Items at ₹99</div></div>
+      <div class="info">
+        <div class="row"><h3>Burger Junction</h3><span class="rating">4.0 ★</span></div>
+        <p class="meta">Burger, Fast Food · ₹200 for two</p>
+        <p class="meta">15–20 min · 1.2 km</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>© 2026 Zomato-style template. Built for learning, not affiliated with Zomato.</footer>
+
+</body>
+</html>
